@@ -1,0 +1,112 @@
+# ============================================================
+# XOPTPOE .gitignore
+# ============================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# --- IDE ---
+.vscode/
+.idea/
+*.iml
+
+# --- Environment ---
+.env
+.venv/
+env/
+venv/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# ============================================================
+# DATA ARTIFACTS — too large for GitHub, reproduce from scripts
+# ============================================================
+
+# Raw and processed data directories
+data/raw/
+data/final_v2_long_horizon/
+data/final_v3_long_horizon_china/
+data/final_v4_expanded_universe/
+data/modeling_v2/
+data/modeling_v3/
+data/modeling_v4/
+
+# Large parquet and CSV data files (anywhere in repo)
+*.parquet
+*.csv
+!config/*.csv
+!workspace_v4/config/*.csv
+!workspace_v4/data_refs/asset_master.csv
+!workspace_v4/data_refs/target_series_manifest.csv
+!workspace_v4/data_refs/macro_mapping.csv
+!workspace_v4/data_refs/horizon_manifest.csv
+!workspace_v4/data_refs/feature_dictionary.csv
+!workspace_v4/data_refs/feature_set_manifest.csv
+!workspace_v4/data_refs/split_manifest.csv
+!workspace_v4/data_refs/AUTHORITATIVE_ARTIFACTS.csv
+
+# ============================================================
+# MODEL WEIGHTS — reproduce from training scripts
+# ============================================================
+*.pt
+*.pth
+*.h5
+*.pkl
+*.joblib
+*.npy
+*.npz
+
+# Mehmet experiment bundles (large trained model artifacts)
+mehmet/experiments/
+mehmet/outs/
+mehmet/e2e_state_dicts_bundle/
+mehmet/e2e_different_topks_warch/
+mehmet/e2e_kingslandingvswinterfell/
+mehmet/e2e_summerchild_vs_winterwolf_bundle/
+mehmet/fnn_v1/
+
+# ============================================================
+# GENERATED OUTPUTS — reproduce from scripts
+# ============================================================
+
+# Plots and figures (regenerable)
+workspace_v4/plots/
+workspace_v4/reports/scenario_results*.csv
+workspace_v4/reports/figures*/
+workspace_v4/reports/*.png
+workspace_v4/reports/**/*.png
+
+# Large report artifacts
+reports/v4_expanded_universe/plots/
+reports/v3_long_horizon/plots/
+reports/v2_long_horizon/plots/
+
+# ============================================================
+# LARGE BINARY FILES
+# ============================================================
+*.pdf
+!docs/*.pdf
+
+# ============================================================
+# PARQUET DATA REFS — selective inclusion
+# ============================================================
+# The small CSV data_refs are allowed (see above).
+# Large parquet data_refs are excluded by the *.parquet rule.
+# To share data_refs parquets, use Git LFS or a separate
+# data distribution mechanism.

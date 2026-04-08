@@ -1,0 +1,10 @@
+sleeve_id,ticker,sleeve_name,economic_definition,exposure_region,target_currency,provider_type,proxy_flag,locked_flag,start_date_target,notes
+EQ_US,VTI,US equities,Broad US total stock market exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,locked sleeve proxy
+EQ_EZ,EZU,Euro area equities,Developed-market eurozone large/mid-cap equities,EURO_AREA,USD,ETF issuer + market history,1,1,2006-01-31,locked euro area definition
+EQ_JP,EWJ,Japan equities,Broad Japanese equity exposure,JAPAN,USD,ETF issuer + market history,1,1,2006-01-31,locked sleeve proxy
+EQ_EM,VWO,EM equities,Broad emerging-market equity exposure,EM_GLOBAL,USD,ETF issuer + market history,1,1,2006-01-31,no dedicated EM macro local block
+FI_UST,IEF,US Treasuries 7-10Y,Intermediate US Treasury exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,locked sleeve proxy
+FI_IG,LQD,US investment-grade credit,USD investment-grade corporate bond exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,locked sleeve proxy
+ALT_GLD,GLD,Gold,Gold-bullion-linked exposure,GLOBAL,USD,ETF issuer + market history,1,1,2006-01-31,no local macro block
+RE_US,VNQ,US REITs,US listed real-estate exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,locked sleeve proxy
+EQ_CN,FXI,China equities,Investable China large-cap equity exposure,CHINA,USD,ETF issuer + market history,1,0,2004-10-31,versioned China sleeve; FXI chosen for longer USD ETF history

@@ -1,0 +1,5 @@
+split_name,start_month_end,end_month_end,month_count,row_count,sleeve_count,horizon_count,horizons,notes
+train,2007-02-28,2012-02-29,61,1496,15,2,"60,120",Common-window default split with both 60m and 120m horizons present.
+validation,2012-03-31,2014-02-28,24,720,15,2,"60,120",Common-window default split with both 60m and 120m horizons present.
+test,2014-03-31,2016-02-29,24,720,15,2,"60,120",Common-window default split with both 60m and 120m horizons present.
+excluded_60_only_tail,2016-03-31,2021-02-28,60,900,15,1,60,Filtered first-pass rows outside the default common 60m/120m split window; retained in modeling_panel_firstpass only.

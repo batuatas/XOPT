@@ -1,0 +1,18 @@
+series_id,variable_name,state_var_name,geo_block,source_provider,preferred_code,fallback_code,native_frequency,transform_rule,lag_rule,scenario_manipulable_flag,notes
+US_CPI,us_cpi,infl_US,US,FRED/BLS,CPIAUCSL,,monthly,infl_us_yoy = 100*(x/lag12(x)-1),use observation month t-1 at row t,1,headline CPI level source
+US_UNEMP,us_unemp,unemp_US,US,FRED/BLS,UNRATE,,monthly,level,use observation month t-1 at row t,1,unemployment rate
+US_RF3M,us_3m,short_rate_US,US,FRED/Board of Governors,TB3MS,DGS3MO,monthly,level; rf_1m = x/1200,use observation month t-1 at row t for features; use t+1 in target subtraction,1,dual use state short rate and risk-free source
+US_10Y,us_10y,long_rate_US,US,FRED/Board of Governors,DGS10,GS10,daily,month-end level,month-end observable at row t,1,market-observable rate series
+EA_CPI,ea_cpi,infl_EA,EURO_AREA,FRED/Eurostat,CP0000EZ19M086NEST,Eurostat direct HICP,monthly,infl_ea_yoy = 100*(x/lag12(x)-1),use observation month t-1 at row t,1,euro area HICP
+EA_UNEMP,ea_unemp,unemp_EA,EURO_AREA,FRED/OECD,LRHUTTTTEZM156S,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,harmonized unemployment
+EA_3M,ea_3m,short_rate_EA,EURO_AREA,FRED/OECD,IR3TIB01EZM156N,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,euro-area 3m interbank rate
+EA_10Y,ea_10y,long_rate_EA,EURO_AREA,FRED/OECD,IRLTLT01EZM156N,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,euro-area 10y government yield
+JP_CPI,jp_cpi,infl_JP,JAPAN,FRED/OECD,JPNCPIALLMINMEI,OECD direct same concept,monthly,infl_jp_yoy = 100*(x/lag12(x)-1),use observation month t-1 at row t,1,Japan CPI
+JP_UNEMP,jp_unemp,unemp_JP,JAPAN,FRED/OECD,LRHUTTTTJPM156S,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,Japan unemployment
+JP_3M,jp_3m,short_rate_JP,JAPAN,FRED/OECD,IR3TIB01JPM156N,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,Japan 3m interbank rate
+JP_10Y,jp_10y,long_rate_JP,JAPAN,FRED/OECD,IRLTLT01JPM156N,OECD direct same concept,monthly,level,use observation month t-1 at row t,1,Japan 10y government yield
+USD_BROAD,usd_broad,usd_broad,GLOBAL,FRED/Board of Governors,DTWEXBGS,Fed H.10 direct,daily,month-end level; d1 = log(x/lag1(x)); d12 = log(x/lag12(x)),month-end observable at row t,1,USD block
+VIX,vix,vix,GLOBAL,FRED/Cboe,VIXCLS,Cboe direct,daily,month-end level; optional 1m delta,month-end observable at row t,1,stress block
+US_REAL10Y,us_real10y,us_real10y,GLOBAL,FRED/Board of Governors,DFII10,T10YIE only if DFII10 unavailable,daily,month-end level; optional 1m delta,month-end observable at row t,1,gold/rates opportunity-cost variable
+IG_OAS,ig_oas,ig_oas,GLOBAL,FRED/ICE BofA,BAMLC0A0CM,BAA10YM,daily,month-end level; optional 1m delta,month-end observable at row t,1,credit-stress variable
+OIL_WTI,oil_wti,oil_wti,GLOBAL,FRED/EIA,DCOILWTICO,MCOILWTICO,daily,month-end level; d1 = log(x/lag1(x)); d12 = log(x/lag12(x)),month-end observable at row t,1,oil shock proxy

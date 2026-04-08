@@ -1,0 +1,42 @@
+sleeve_id,block_role,geo_block,mapping_priority,notes
+ALT_GLD,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+ALT_GLD,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+CR_EU_HY,local,EURO_AREA,1,Versioned v4 local block mapping.
+CR_EU_HY,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+CR_EU_HY,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+CR_EU_IG,local,EURO_AREA,1,Versioned v4 local block mapping.
+CR_EU_IG,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+CR_EU_IG,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+CR_US_HY,local,US,1,Versioned v4 local block mapping.
+CR_US_HY,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+CR_US_HY,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+CR_US_IG,local,US,1,Versioned v4 local block mapping.
+CR_US_IG,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+CR_US_IG,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+EQ_CN,local,CHINA,1,Versioned v4 local block mapping.
+EQ_CN,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+EQ_CN,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+EQ_EM,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+EQ_EM,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+EQ_EZ,local,EURO_AREA,1,Versioned v4 local block mapping.
+EQ_EZ,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+EQ_EZ,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+EQ_JP,local,JAPAN,1,Versioned v4 local block mapping.
+EQ_JP,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+EQ_JP,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+EQ_US,local,US,1,Versioned v4 local block mapping.
+EQ_US,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+EQ_US,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+FI_EU_GOVT,local,EURO_AREA,1,Versioned v4 local block mapping.
+FI_EU_GOVT,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+FI_EU_GOVT,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+FI_UST,local,US,1,Versioned v4 local block mapping.
+FI_UST,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+FI_UST,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+LISTED_INFRA,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+LISTED_INFRA,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+LISTED_RE,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+LISTED_RE,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.
+RE_US,local,US,1,Versioned v4 local block mapping.
+RE_US,global,GLOBAL,2,All v4 sleeves consume global/stress block.
+RE_US,usd,GLOBAL,3,All final v4 targets are modeled as USD unhedged.

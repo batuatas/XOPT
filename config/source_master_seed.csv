@@ -1,0 +1,5 @@
+source_id,provider_name,dataset_name,source_type,access_method,frequency_native,url_or_endpoint_note,fallback_source_id,notes
+SRC_YAHOO_FINANCE,Yahoo Finance,Daily ETF adjusted-close history,market,python_api,daily,https://query1.finance.yahoo.com/v7/finance/download/,SRC_FUND_PROVIDER_PAGES,default locked v1 target source
+SRC_FRED_API,Federal Reserve Bank of St. Louis,FRED macro and market series,macro,python_api,mixed,https://fred.stlouisfed.org/docs/api/fred/,SRC_OECD_OR_EUROSTAT,daily and monthly backbone series via preferred locked codes
+SRC_FUND_PROVIDER_PAGES,ETF Issuers,Vanguard/iShares/SPDR reference pages,reference,web_page,mixed,issuer fund pages for cross-check only,,not used for primary time series pulls
+SRC_OECD_OR_EUROSTAT,OECD/Eurostat,Alternative macro reference endpoints,macro,web_page,mixed,used only as explicit fallback when configured,,fallback references must be explicitly enabled

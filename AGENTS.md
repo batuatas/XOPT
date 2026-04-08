@@ -1,0 +1,1 @@
+Treat docs/LOCKED_V1_SPEC.md as the primary source of truth.

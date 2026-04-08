@@ -1,0 +1,15 @@
+workspace_path,authoritative_repo_path,artifact_role,notes
+workspace_v4/data_refs/asset_master.csv,data/final_v4_expanded_universe/asset_master.csv,asset universe master,Copied snapshot of accepted v4 asset master.
+workspace_v4/data_refs/target_series_manifest.csv,data/final_v4_expanded_universe/target_series_manifest.csv,target proxy manifest,Copied snapshot of accepted v4 target series manifest.
+workspace_v4/data_refs/macro_mapping.csv,data/final_v4_expanded_universe/macro_mapping.csv,macro linkage manifest,Copied snapshot of accepted v4 macro mapping.
+workspace_v4/data_refs/horizon_manifest.csv,data/final_v4_expanded_universe/horizon_manifest.csv,horizon definition manifest,Copied snapshot of accepted v4 horizon manifest.
+workspace_v4/data_refs/feature_dictionary.csv,data/final_v4_expanded_universe/feature_dictionary.csv,feature dictionary,Copied snapshot of accepted v4 feature dictionary.
+workspace_v4/data_refs/feature_master_monthly.parquet,data/final_v4_expanded_universe/feature_master_monthly.parquet,feature panel,Compact copied artifact.
+workspace_v4/data_refs/target_panel_long_horizon.parquet,data/final_v4_expanded_universe/target_panel_long_horizon.parquet,long-horizon target panel,Compact copied artifact.
+workspace_v4/data_refs/modeling_panel_hstack.parquet,data/final_v4_expanded_universe/modeling_panel_hstack.parquet,joined modeling panel,Compact copied artifact.
+workspace_v4/data_refs/modeling_panel_firstpass.parquet,data/modeling_v4/modeling_panel_firstpass.parquet,filtered first-pass modeling panel,Compact copied artifact.
+workspace_v4/data_refs/feature_set_manifest.csv,data/modeling_v4/feature_set_manifest.csv,feature set manifest,Accepted v4 feature-set manifest.
+workspace_v4/data_refs/split_manifest.csv,data/modeling_v4/split_manifest.csv,split manifest,Accepted v4 common-window split manifest.
+workspace_v4/data_refs/predictions_validation_v4_benchmark.parquet,data/modeling_v4/predictions_validation_v4_benchmark.parquet,validation benchmark predictions,Accepted supervised benchmark predictions.
+workspace_v4/data_refs/predictions_test_v4_benchmark.parquet,data/modeling_v4/predictions_test_v4_benchmark.parquet,test benchmark predictions,Accepted supervised benchmark predictions.
+workspace_v4/data_refs/portfolio_benchmark_returns.parquet,data/modeling_v4/portfolio_benchmark_returns.parquet,portfolio benchmark return paths,Accepted supervised portfolio benchmark outputs.

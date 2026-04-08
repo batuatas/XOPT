@@ -1,0 +1,4 @@
+horizon_months,horizon_years,log_horizon_years,target_label,annualization_factor,notes
+60,5.0,1.6094379124341003,annualized_excess_forward_return,0.2,Monthly decision dates with annualized compounded forward excess total return target.
+120,10.0,2.302585092994046,annualized_excess_forward_return,0.1,Monthly decision dates with annualized compounded forward excess total return target.
+180,15.0,2.70805020110221,annualized_excess_forward_return,0.06666666666666667,Monthly decision dates with annualized compounded forward excess total return target.

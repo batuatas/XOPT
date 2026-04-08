@@ -1,0 +1,16 @@
+sleeve_id,ticker,sleeve_name,economic_definition,exposure_region,target_currency,provider_type,proxy_flag,locked_flag,start_date_target,asset_class_group,target_rule_family,notes
+EQ_US,VTI,US equities,Broad U.S. equity exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,Equity,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+EQ_EZ,EZU,Euro area equities,Euro-area equity exposure,EURO_AREA,USD,ETF issuer + market history,1,1,2006-01-31,Equity,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+EQ_JP,EWJ,Japan equities,Broad Japan equity exposure,JAPAN,USD,ETF issuer + market history,1,1,2006-01-31,Equity,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+EQ_CN,FXI,China equities,Investable China equity exposure,CHINA,USD,ETF issuer + market history,1,1,2004-10-31,Equity,USD_LISTED_ETF_DIRECT,carried forward from v3
+EQ_EM,VWO,EM equities,Broad emerging-market equity exposure,EM_GLOBAL,USD,ETF issuer + market history,1,1,2006-01-31,Equity,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+FI_UST,IEF,US Treasuries,Intermediate U.S. Treasury exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,Fixed Income,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+FI_EU_GOVT,IBGM.AS,Euro government bonds,Euro-area government bond exposure,EURO_AREA,USD,ETF issuer + market history plus FX conversion,1,1,2008-01-31,Fixed Income,LOCAL_ETF_PLUS_FX_TO_USD,locked euro fixed-income rule
+CR_US_IG,LQD,US investment-grade credit,U.S. investment-grade corporate credit exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,Credit,USD_LISTED_ETF_DIRECT,official v4 replacement for FI_IG
+CR_EU_IG,IEAC.L,Euro investment-grade credit,Euro investment-grade corporate credit exposure,EURO_AREA,USD,ETF issuer + market history plus FX conversion,1,1,2009-03-31,Credit,LOCAL_ETF_PLUS_FX_TO_USD,locked euro fixed-income rule
+CR_US_HY,HYG,US high-yield credit,U.S. high-yield corporate credit exposure,US,USD,ETF issuer + market history,1,1,2007-04-30,Credit,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
+CR_EU_HY,IHYG.L,Euro high-yield credit,Euro high-yield corporate credit exposure,EURO_AREA,USD,ETF issuer + market history plus FX conversion,1,1,2010-09-30,Credit,LOCAL_ETF_PLUS_FX_TO_USD,locked euro fixed-income rule
+RE_US,VNQ,US listed real estate,U.S. listed real-estate / REIT exposure,US,USD,ETF issuer + market history,1,1,2006-01-31,Real Asset,USD_LISTED_ETF_DIRECT,coexists with LISTED_RE
+LISTED_RE,RWX,Listed real estate ex-US,Ex-U.S. listed real-estate exposure,EX_US_GLOBAL,USD,ETF issuer + market history,1,1,2006-01-31,Real Asset,USD_LISTED_ETF_DIRECT,LISTED_RE is locked to ex-U.S. listed real estate
+LISTED_INFRA,IGF,Listed infrastructure,Global listed infrastructure exposure,GLOBAL,USD,ETF issuer + market history,1,1,2007-01-31,Real Asset,USD_LISTED_ETF_DIRECT,explicitly equity-like real-asset sleeve
+ALT_GLD,GLD,Gold,Gold-bullion-linked exposure,GLOBAL,USD,ETF issuer + market history,1,1,2006-01-31,Alternative,USD_LISTED_ETF_DIRECT,locked v4 sleeve proxy
