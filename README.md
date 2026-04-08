@@ -1,233 +1,50 @@
-# XOPTPOE v1 Data Build
+# XOPTPOE — Decision Intelligence Platform
 
-## Project purpose
+## Overview
+XOPTPOE is a **decision intelligence platform** designed for strategic asset allocation (SAA). It implements the **Predict–Optimize–Explain (POE)** framework, allowing institutional investors to move beyond black-box output and fully understand the macroeconomic conditions that drive their optimal portfolio allocations.
 
-This repository builds the **minimum viable v1 monthly dataset** for the industry translation of the **Predict–Optimize–Explain (POE)** framework.
+Instead of generating arbitrary Monte Carlo simulations or simple factor attributions, XOPTPOE searches the macro state-space (using MALA and other scenario engines) to answer targeted, narrative-based questions. Example: *"What macro conditions would cause the optimizer to allocate 15% to gold?"*
 
-The academic paper works with firm-level tactical allocation and pipeline-level explanation. This repository instead builds a **cross-asset, sleeve-level, strategic-allocation panel** that can support:
+This repository represents the transition from the original academic POE research into a structured, scalable decision engine platform.
 
-- monthly return prediction,
-- downstream long-only portfolio optimization,
-- and later POE-style macro-state interrogation / scenario generation.
+## Repository Structure
 
-The goal is not to build the full modeling or optimization stack here. The goal is to produce a **clean, reproducible, implementation-ready monthly asset-month dataset**.
+The codebase is organized into nested modules reflecting different stages of the POE evolution:
 
-## Locked v1 scope
+> [!IMPORTANT]
+> For LLMs and human analysts exploring this repo: **`workspace_v4/` is the active codebase.** If you are modifying code, generating scenarios, or analyzing the production-grade pipeline, look there. All other top-level directories (`data/`, `docs/`, `reports/`, etc.) exist as historical architecture or legacy assets and should be ignored for active development unless stated otherwise.
 
-This repo implements the following locked design choices:
+### `workspace_v4/` (Active Implementation)
+- **What it is**: The current 14-sleeve strategic asset allocation pipeline.
+- **Key differences from earlier versions**: Walks forward an Elastic Net model on 19 macro variables across 14 investable sleeves (Equities, Bonds, Credit, REITs, Infrastructure, Gold) on a 5-year prediction horizon.
+- **Components**:
+  - `src/xoptpoe_v4_data/`: Data build and feature orchestration.
+  - `src/xoptpoe_v4_models/`: Robust MVO optimizer and walk-forward Elastic Net predictor.
+  - `src/xoptpoe_v4_scenario/`: MALA-based scenario engine for macro-state sampling and prediction probing.
 
-- **8 sleeves**
-- **USD-denominated ETF adjusted-close targets**
-- **monthly month-end panel**
-- **target = next-month excess return**
-- **risk-free = TB3MS-based monthly approximation**
-- **no separate FX conversion layer in v1 target construction**
-- **local macro blocks = US, Euro area, Japan**
-- **EM uses global/USD/risk mapping, not a separate EM macro block**
-- **global/stress block = DTWEXBGS, VIXCLS, DFII10, BAMLC0A0CM, DCOILWTICO**
-- **official monthly macro lagged by one observation month**
-- **latest revised data, not vintage-pure**
-- **downstream optimization intent = long-only, fully invested, no leverage**
-- **POE compatibility preserved**
+### `xoptpoe_product_brief.md` (Platform Vision)
+- **What it is**: The strategic blueprint for where this repository is heading next. It re-frames XOPTPOE not just as the v4 implementation, but as a modular platform where the data layer, prediction model, optimizer, and scenario engine are all swappable.
+- **Why read it**: Before proposing major architectural changes to v4, read this brief to understand the intended multi-tenant, model-agnostic product architecture.
 
-## Sleeve universe
+### `mehmet/` (Reference Origin)
+- **What it is**: The original research implementation referenced in the Predict-Optimize-Explain theory.
+- **Key differences**: Firm-level (stock selection) monthly allocation based on neural networks (PyTorch) using end-to-end differentiable cvxpylayers.
+- **Why it's here**: Kept primarily for benchmark reference and research continuity regarding the analytical gradient path versus autograd.
 
-The locked v1 sleeves are:
+### `archive/` (Legacy Reports & Specs)
+- Contains historical `v1`, `v2`, and `v3` design reports, logs, and locked specifications.
+- Do not reference `archive/docs/LOCKED_V1_SPEC.md` for current architectural truth.
 
-- **VTI** — US equities
-- **EZU** — Euro area equities
-- **EWJ** — Japan equities
-- **VWO** — Emerging market equities
-- **IEF** — US 7–10Y Treasuries
-- **LQD** — US investment-grade corporate credit
-- **GLD** — Gold
-- **VNQ** — US REITs
+## Quick Start (workspace_v4)
 
-These are treated as **investable sleeve proxies**. The target layer is intentionally uniform: every sleeve is built from a USD-listed ETF using adjusted-close price history.
-
-## Target definition
-
-For sleeve \(a\) and month-end \(t\):
-
-- let \(P_{a,t}\) be the **last available adjusted close in calendar month \(t\)**
-- compute sleeve return as
-
-\[
-R_{a,t+1} = \frac{P_{a,t+1}}{P_{a,t}} - 1
-\]
-
-- define the monthly risk-free approximation as
-
-\[
-rf^{(1m)}_t = \frac{\text{TB3MS}_t}{1200}
-\]
-
-- define the prediction target as
-
-\[
-y_{a,t+1} = R_{a,t+1} - rf^{(1m)}_{t+1}
-\]
-
-This is the locked v1 excess-return label.
-
-## Macro backbone
-
-### Local / regional blocks
-- **US**: CPIAUCSL, UNRATE, TB3MS, DGS10
-- **Euro area**: CP0000EZ19M086NEST, LRHUTTTTEZM156S, IR3TIB01EZM156N, IRLTLT01EZM156N
-- **Japan**: JPNCPIALLMINMEI, LRHUTTTTJPM156S, IR3TIB01JPM156N, IRLTLT01JPM156N
-
-### Global / stress block
-- **DTWEXBGS** — Nominal Broad U.S. Dollar Index
-- **VIXCLS** — VIX
-- **DFII10** — 10Y real Treasury yield
-- **BAMLC0A0CM** — ICE BofA US Corporate OAS
-- **DCOILWTICO** — WTI crude oil
-
-## Timing and lag policy
-
-### Row date
-Each modeling row is indexed by **calendar month-end \(t\)**.
-
-### Market data allowed at row \(t\)
-Allowed through the **last available trading day in month \(t\)**:
-- sleeve adjusted closes,
-- VIXCLS,
-- DTWEXBGS,
-- DFII10,
-- BAMLC0A0CM,
-- DCOILWTICO,
-- DGS10.
-
-### Official monthly macro allowed at row \(t\)
-Use the value for **observation month \(t-1\)**.
-
-This is the locked v1 conservative lag rule. It avoids hand-building country-specific release calendars.
-
-### Quarterly variables
-Quarterly variables are not part of the locked core. If introduced later, they must be carried forward only after a conservative release lag.
-
-### Revisions
-v1 uses **latest revised values**, not vintage-pure data.
-
-## Table architecture
-
-The repository should produce the following tables:
-
-- `asset_master`
-- `source_master`
-- `sleeve_target_raw`
-- `macro_raw`
-- `macro_state_panel`
-- `feature_panel`
-- `target_panel`
-- `modeling_panel`
-- `macro_mapping`
-- `coverage_audit`
-
-## Build order
-
-1. lock `asset_master`
-2. fetch raw sleeve histories
-3. validate sleeve coverage and month-end collapses
-4. fetch TB3MS and build risk-free series
-5. fetch macro backbone
-6. apply lag policy
-7. build `macro_state_panel`
-8. build sleeve features
-9. build `target_panel`
-10. join `modeling_panel`
-11. run coverage / leakage / duplicate-key QA
-12. freeze v1
-
-## Quality checks
-
-The build must include checks for:
-
-- duplicate primary keys
-- missing sleeve histories
-- invalid month-end collapse
-- missing adjusted-close values at used month-ends
-- impossible returns (e.g. \(R \le -1\))
-- macro-series staleness
-- lag-policy violations
-- accidental use of current-month official macro
-- inconsistent sample start handling across sleeves
-- silent ticker substitution
-
-## Explicit non-goals for v1
-
-This repo does **not** do the following in locked v1:
-
-- no standalone China sleeve
-- no commodities ex-gold sleeve
-- no institution benchmark metadata layer
-- no separate FX conversion layer
-- no vintage-pure macro architecture
-- no benchmark-index replacement for ETF sleeves
-- no optimization engine
-- no POE sampler yet
-
-## Future extensions
-
-Planned future extensions may include:
-
-- Shiller US valuation block
-- BIS leverage / credit-to-GDP block
-- benchmark-index replacement for selected ETF sleeves
-- standalone China sleeve
-- broader commodity sleeve
-- vintage-aware macro states
-- institution forecast / benchmark metadata
-- direct POE macro-state generation layer
-
-## Repository implementation
-
-Current implementation files are organized as:
-
-- `config/` locked manifests and seed tables
-- `schemas/` table specs and validation rules
-- `src/xoptpoe_data/` modular pipeline code
-- `scripts/run_build.py` full data build entrypoint
-- `scripts/run_qa.py` QA-only re-run entrypoint
-
-### Install dependencies
+If you are setting up the environment to run the v4 pipeline:
 
 ```bash
-python3 -m pip install pandas numpy yfinance pandas-datareader
+# Install dependencies
+pip install -r requirements.txt
+
+# To run a scenario probe using the v4 pipeline
+cd workspace_v4
+python scripts/scenario/run_v4_scenario_final.py
 ```
-
-### Run full build
-
-```bash
-python3 scripts/run_build.py --end-date 2026-03-01
-```
-
-### Run QA only
-
-```bash
-python3 scripts/run_qa.py
-```
-
-### Output paths
-
-Build outputs are written to:
-
-- `data/raw/`
-- `data/intermediate/`
-- `data/final/`
-- `reports/`
-
-### Note on macro-state layout
-
-The implementation uses a canonical **geo-prefixed wide** `macro_state_panel` with monthly rows and explicit state names, for example:
-- `infl_US`, `unemp_EA`, `short_rate_JP`, `term_slope_US`
-- `usd_broad`, `vix`, `us_real10y`, `ig_oas`, `oil_wti`
-
-For backward compatibility and sleeve modeling convenience:
-- mapped alias fields (`local_*`, `*_level`) are derived from canonical macro state
-- `global_state_panel` is retained as a compatibility intermediate view
-
-Locked v1 restrictions are unchanged:
-- no EM dedicated local macro block
-- no local block for `ALT_GLD`
+*(Please see `workspace_v4/README.md` and `workspace_v4/docs/` for detailed run instructions).*
